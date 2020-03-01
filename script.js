@@ -9,7 +9,7 @@ let itemQty = document.getElementById('item-qty');
 let subTotal = document.getElementById('sub-total');
 let totalAmount = document.getElementById('total-amount');
 let removePhone = document.getElementById('remove-phone');
-let removeCasing = document.getElementById('remove-casing'); 
+let removeCasing = document.getElementById('remove-casing');
 let addedProduct = 0;
 let addedCase = 0;
 let taxRate = 0;
@@ -23,7 +23,7 @@ let goBackBtn = document.getElementById('btn-go-back');
 document.getElementById('phone-price').innerText = phonePrice;
 document.getElementById('casing-price').innerText = casePrice;
 document.getElementById('tax-rate').innerText = taxRate;
-addBtn.addEventListener('click', () => { 
+addBtn.addEventListener('click', () => {
     removeBtn.disabled = false;
     addedProduct++;
     inputFieldDisplay.value = addedProduct;
@@ -31,7 +31,7 @@ addBtn.addEventListener('click', () => {
     subTotal.innerText = parseInt(subTotal.innerText) + phonePrice;
     totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
 });
-removeBtn.addEventListener('click', () => { 
+removeBtn.addEventListener('click', () => {
     if (addedProduct === 0) {
         removeBtn.disabled = true;
         if (addedCase === 0) {
@@ -42,11 +42,11 @@ removeBtn.addEventListener('click', () => {
         inputFieldDisplay.value = addedProduct;
         phoneQty.innerText = addedProduct;
         subTotal.innerText = parseInt(subTotal.innerText) - phonePrice;
-        totalAmount.innerText = parseInt(subTotal.innerText) +taxRate;
+        totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
     }
 });
 
-addCaseBtn.addEventListener('click', () => { 
+addCaseBtn.addEventListener('click', () => {
     removeCaseBtn.disabled = false;
     addedCase++;
     inputFieldDisplayCasing.value = addedCase;
@@ -54,7 +54,7 @@ addCaseBtn.addEventListener('click', () => {
     subTotal.innerText = parseInt(subTotal.innerText) + casePrice;
     totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
 });
-removeCaseBtn.addEventListener('click', () => { 
+removeCaseBtn.addEventListener('click', () => {
     if (addedCase === 0) {
         removeCaseBtn.disabled = true;
         if (addedProduct === 0) {
@@ -65,17 +65,17 @@ removeCaseBtn.addEventListener('click', () => {
         inputFieldDisplayCasing.value = addedCase;
         itemQty.innerText = addedCase;
         subTotal.innerText = parseInt(subTotal.innerText) - casePrice;
-        totalAmount.innerText = parseInt(subTotal.innerText) +taxRate;
+        totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
     }
 });
 
-removePhone.addEventListener('click', () => { 
+removePhone.addEventListener('click', () => {
     if (addedCase > 0) {
         inputFieldDisplay.value = 0;
         addedProduct = 0;
         phoneQty.innerText = 0;
         removeBtn.disabled = true;
-        subTotal.innerText = addedCase * casePrice ;
+        subTotal.innerText = addedCase * casePrice;
         totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
     } else {
         inputFieldDisplay.value = 0;
@@ -87,13 +87,13 @@ removePhone.addEventListener('click', () => {
     }
 });
 
-removeCasing.addEventListener('click', () => { 
+removeCasing.addEventListener('click', () => {
     if (addedProduct > 0) {
         inputFieldDisplayCasing.value = 0;
         addedCase = 0;
         caseQty.innerText = 0;
         removeCaseBtn.disabled = true;
-        subTotal.innerText = addedProduct * phonePrice ;
+        subTotal.innerText = addedProduct * phonePrice;
         totalAmount.innerText = parseInt(subTotal.innerText) + taxRate;
     } else {
         inputFieldDisplayCasing.value = 0;
@@ -109,7 +109,7 @@ btnCheckOut.addEventListener('click', (e) => {
     let date = new Date();
     document.getElementById('display-date').innerText = `0${date.getDate()} | 0${date.getMonth()+1} | ${date.getFullYear()}`;
     let customerNumber = parseInt(phoneNumber.value);
-    if ((!customerNumber) || (addedProduct <= 0 && addedCase <= 0 )) {
+    if ((!customerNumber) || (addedProduct <= 0 && addedCase <= 0)) {
         alert('No Orders Found!');
     } else {
         document.getElementById('phone-data').style.display = 'none';
@@ -117,24 +117,24 @@ btnCheckOut.addEventListener('click', (e) => {
         document.getElementById('customer').innerHTML = customerName.value;
         document.getElementById('phone').innerHTML = phoneNumber.value;
         if (addedProduct > 0 && addedCase > 0) {
-        document.getElementById('details').innerHTML = `
+            document.getElementById('details').innerHTML = `
         ${document.getElementById('p-name').innerHTML} | Quantity : ${inputFieldDisplay.value}
         | Price : ${addedProduct * phonePrice} <br>
         ${document.getElementById('c-name').innerHTML} | Quantity : ${inputFieldDisplayCasing.value}
         | Price : ${addedCase * casePrice}
         `;
-        } else if(addedCase > 0 && addedProduct == 0){
-        document.getElementById('details').innerHTML = `
+        } else if (addedCase > 0 && addedProduct == 0) {
+            document.getElementById('details').innerHTML = `
         ${document.getElementById('c-name').innerHTML} | Quantity : ${inputFieldDisplayCasing.value}
         | Price : ${addedCase * casePrice}
         `;
-        } else if(addedProduct > 0 && addedCase == 0){
-        document.getElementById('details').innerHTML = `
+        } else if (addedProduct > 0 && addedCase == 0) {
+            document.getElementById('details').innerHTML = `
         ${document.getElementById('p-name').innerHTML} | Quantity : ${inputFieldDisplay.value}
         | Price : ${addedProduct * phonePrice}
         `;
         }
-        document.getElementById('subTotal').innerHTML =subTotal.innerText ;
+        document.getElementById('subTotal').innerHTML = subTotal.innerText;
         document.getElementById('tax').innerHTML = taxRate;
         document.getElementById('total').innerHTML = totalAmount.innerText;
     }
@@ -144,4 +144,4 @@ goBackBtn.addEventListener('click', () => {
     document.getElementById('phone-data').style.display = 'block';
     location.reload();
     document.getElementById('order-details').style.display = 'none';
- });
+});
